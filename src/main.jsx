@@ -5,12 +5,14 @@ import App from './App.jsx'
 import Navbar from './components/Navbar.jsx'
 
 import 'remixicon/fonts/remixicon.css'
+import Footer from './components/footer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
      <div className="container mx-auto px-4">
       <Navbar/>  
       <App />
+      <Footer/>
      </div>
 
   </StrictMode>,
