@@ -2,59 +2,76 @@ import { useEffect, useState } from "react";
 import DataImage from "./data";
 
 function App() {
-  const [data, setData] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Fetch data dari db.json
   useEffect(() => {
-    fetch("/db.json")
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error("Gagal memuat data:", error));
+    const BASE_URL = "http://localhost:3000";
+
+    Promise.all([
+      fetch(`${BASE_URL}/profile`).then((res) => res.json()),
+      fetch(`${BASE_URL}/projects`).then((res) => res.json()),
+    ])
+      .then(([profileData, projectsData]) => {
+        setProfile(profileData);
+        setProjects(projectsData);
+      })
+      .catch((error) => {
+        console.error("Gagal memuat data:", error);
+      })
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading || !profile) {
+    return <p className="text-center mt-10">Loading data...</p>;
+  }
 
   return (
     <>
+      {/* HERO */}
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
         <div>
-          <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-4 rounded-2xl ">
+          <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-4 rounded-2xl">
             <img
-              src="/assets/WhatsApp Image 2025-11-13 at 13.54.32.jpeg"
+              src={profile.photoMain}
               alt="Hero Image"
               className="w-10 rounded-md"
             />
             <q>Portfolio atau biodata dari mahasiswa UNKLAB.😁</q>
           </div>
-          <h1 className="text-5xl/tight font-bold mb-6">Hi, Saya Alsa Alow</h1>
+
+          <h1 className="text-5xl/tight font-bold mb-6">
+            Hi, Saya {profile.name}
+          </h1>
           <p className="text-base/loose mb-6 opacity-50">
-            Mahasiswa Informatika yang memiliki minat besar dalam pengembangan
-            web front-end dan database system. Terampil menggunakan React,
-            Tailwind, dan Oracle Data Modeler untuk membuat sistem yang efisien
-            dan user-friendly. Berfokus pada solusi digital yang kreatif dan
-            fungsional.
+            {profile.description}
           </p>
-          <div className="Flex items-center sm:gap-4 gap-2">
+
+          <div className="flex items-center sm:gap-4 gap-2">
             <a
               href="#"
-              className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600 mr-2" 
+              className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600 mr-2"
             >
               Download CV <i className="ri-download-line ri-lg"></i>
             </a>
             <a
-              href="#"
+              href="#projects"
               className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600"
             >
               Lihat Proyek <i className="ri-arrow-down-line ri-lg"></i>
             </a>
           </div>
         </div>
+
         <img
-          src="/assets/WhatsApp Image 2025-11-13 at 13.54.32 (1).jpeg"
+          src={profile.photoSide}
           alt="Hero Image"
           className="w-[500px] md:ml-auto rounded-md"
         />
       </div>
 
-      {/* tentang */}
+      {/* TENTANG */}
       <div className="tentang mt-32 py-10">
         <div className="xl:w-2/3 lg:w-3/4 w-full mx-auto p-7 bg-zinc-800 rounded-lg">
           <img
@@ -93,17 +110,15 @@ function App() {
           </div>
         </div>
 
-        
-
-        {/* 🔽 tampilkan data dari db.json di bawah pantun */}
-        <div className="projects mt-16">
+        {/* PROYEK */}
+        <div id="projects" className="projects mt-16">
           <h2 className="text-3xl font-bold mb-6">Daftar Proyek</h2>
 
-          {!data ? (
-            <p>Loading data...</p>
+          {projects.length === 0 ? (
+            <p>Belum ada proyek.</p>
           ) : (
             <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-              {data.projects.map((item) => (
+              {projects.map((item) => (
                 <div
                   key={item.id}
                   className="bg-zinc-800 p-5 rounded-xl hover:bg-zinc-700 transition"
@@ -113,13 +128,17 @@ function App() {
                     alt={item.title}
                     className="rounded-md mb-4"
                   />
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {item.title}
+                  </h3>
                   <p className="text-sm opacity-70">{item.description}</p>
                 </div>
               ))}
             </div>
           )}
         </div>
+
+        {/* PANTUN */}
         <div className="tools mt-32">
           <h1 className="text-4xl/snug font-bold mb-4">
             Terimakasih Tuhan memberkati
