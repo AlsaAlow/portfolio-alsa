@@ -1,48 +1,47 @@
-
 {
-    "profile": {
-      "name": "Alsa Faith Agape Alow",
-      "university": "Universitas Klabat",
-      "description": "Mahasiswa Ilmu Komputer yang suka belajar React & desain web.",
-      "photo": "/assets/profile.jpg"
+  "profile": {
+    "name": "Alsa Faith Agape Alow",
+    "university": "Universitas Klabat",
+    "description": "Mahasiswa Ilmu Komputer yang suka belajar React & desain web.",
+    "photoMain": "/assets/WhatsApp Image 2025-11-13 at 13.54.32.jpeg",
+    "photoSide": "/assets/WhatsApp Image 2025-11-13 at 13.54.32 (1).jpeg"
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "React Portfolio",
+      "description": "Website pribadi dengan React dan Tailwind CSS.",
+      "image": "/assets/proyek/proyek1.webp"
     },
-    "projects": [
-      {
-        "id": 1,
-        "title": "React Portfolio",
-        "description": "Website pribadi dengan React dan Tailwind CSS.",
-        "image": "/assets/proyek/proyek1.webp"
-      },
-      {
-        "id": 2,
-        "title": "Laundry Management System",
-        "description": "Aplikasi manajemen laundry berbasis database.",
-        "image": "/assets/proyek/proyek2.webp"
-      },
-      {
-        "id": 3,
-        "title": "UI Design Exploration",
-        "description": "Eksperimen desain antarmuka modern dengan warna lembut dan layout minimalis.",
-        "image": "/assets/proyek/proyek3.webp"
-      },
-      {
-        "id": 4,
-        "title": "E-Commerce Template",
-        "description": "Tampilan toko online dengan React dan integrasi API produk.",
-        "image": "/assets/proyek/proyek4.webp"
-      },
-      {
-        "id": 5,
-        "title": "Dashboard Admin",
-        "description": "Dashboard responsif untuk manajemen data dan analitik.",
-        "image": "/assets/proyek/proyek5.webp"
-      },
-      {
-        "id": 6,
-        "title": "Landing Page Campaign",
-        "description": "Desain landing page untuk promosi digital campaign.",
-        "image": "/assets/proyek/proyek6.webp"
-      }
-    ]
-  }
-  
+    {
+      "id": 2,
+      "title": "Laundry Management System",
+      "description": "Aplikasi manajemen laundry berbasis database.",
+      "image": "/assets/proyek/proyek2.webp"
+    },
+    {
+      "id": 3,
+      "title": "UI Design Exploration",
+      "description": "Eksperimen desain antarmuka modern dengan warna lembut dan layout minimalis.",
+      "image": "/assets/proyek/proyek3.webp"
+    },
+    {
+      "id": 4,
+      "title": "E-Commerce Template",
+      "description": "Tampilan toko online dengan React dan integrasi API produk.",
+      "image": "/assets/proyek/proyek4.webp"
+    },
+    {
+      "id": 5,
+      "title": "Dashboard Admin",
+      "description": "Dashboard responsif untuk manajemen data dan analitik.",
+      "image": "/assets/proyek/proyek5.webp"
+    },
+    {
+      "id": 6,
+      "title": "Landing Page Campaign",
+      "description": "Desain landing page untuk promosi digital campaign.",
+      "image": "/assets/proyek/proyek6.webp"
+    }
+  ]
+}
